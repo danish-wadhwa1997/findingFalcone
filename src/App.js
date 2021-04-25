@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import React from "react";
+import FalconDetails from "./Components/Molecules/FalconDetails";
+import PlanetSearch from "./Components/Molecules/PlanetSearch";
 function App() {
+  const [falconDetails, setFalconDetails] = React.useState();
+  const findFalcone = (data) => {
+    setFalconDetails(data);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Finding Falcone!</h1>
+
+      {!falconDetails && <PlanetSearch findFalcone={findFalcone} />}
+
+      {falconDetails && (
+        <FalconDetails
+          falconDetails={falconDetails.falconDetails}
+          timeTaken={falconDetails.timeTaken}
+        />
+      )}
     </div>
   );
 }
